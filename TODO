@@ -1,0 +1,13 @@
+TODO NOW:
+- FIGURE OUT HOW TO ADD SONGS TO SERVER!!!
+- Refactor the LocalHosts into subclasses of LocalHost
+- (50%, have XML import/export working) Database for local hosts?  Maybe use XML somehow?
+- Add songs to .xml library after download
+
+
+TODO SOON:
+
+TODO SOMETIME:
+- DAAP Playlists?
+- Fix the DaapHostFilter to work better than just checking the IP address for locality
+- Sync with iPod

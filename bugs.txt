@@ -1,0 +1,8 @@
+Allow playing other files
+allow multiple word searches
+judging a file's playability by extension alone is not always accurate.
+Allow playing all file times.
+show info for files
+do better file name char handling
+better shutdown handling...(should save the file whether shut down with ctrl-c, window close, or os x exit) (also had it save part of the file then have an error, leaving a corruped preferences file)
+need more complete demangling of urls (example: pilations/Cafe%CC%81 Del Mar - Volu...) we take out the %20 but there are apparently others...

@@ -1,0 +1,1 @@
+java -classpath ./;./lib/git.jar;./lib/jdom-xml.jar;./lib/mp3spi1.9.2.jar;./lib/tritonus.jar;./lib/qtjava.jar; org.git.client.swing.GetItTogether

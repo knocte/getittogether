@@ -1,0 +1,60 @@
+# This file affects handling of files based on their names.
+#
+# The -m option specifies whether CVS attempts to merge files.
+#
+# The -k option specifies keyword expansion (e.g. -kb for binary).
+#
+# Format of wrapper file ($CVSROOT/CVSROOT/cvswrappers or .cvswrappers)
+#
+#  wildcard	[option value][option value]...
+#
+#  where option is one of
+#  -m		update methodology	value: MERGE or COPY
+#  -k		expansion mode		value: b, o, kkv, &c
+#
+#  and value is a single-quote delimited value.
+# For example:
+#*.gif -k 'b'
+*.CLASS   -kb -m 'COPY'
+*.DOC   -kb -m 'COPY'
+*.EAR   -kb -m 'COPY'
+*.GIF   -kb -m 'COPY'
+*.JPG   -kb -m 'COPY'
+*.PDF   -kb -m 'COPY'
+*.TAR   -kb -m 'COPY'
+*.WAR   -kb -m 'COPY'
+*.ZIP   -kb -m 'COPY'
+*.avi   -kb -m 'COPY'
+*.bin   -kb -m 'COPY'
+*.bz    -kb -m 'COPY'
+*.bz2   -kb -m 'COPY'
+*.class   -kb -m 'COPY'
+*.doc   -kb -m 'COPY'
+*.ear   -kb -m 'COPY'
+*.exe   -kb -m 'COPY'
+*.gif   -kb -m 'COPY'
+*.gz    -kb -m 'COPY'
+*.hqx   -kb -m 'COPY'
+*.jar   -kb -m 'COPY'
+*.jpeg  -kb -m 'COPY'
+*.jpg   -kb -m 'COPY'
+*.mov   -kb -m 'COPY'
+*.mp3   -kb -m 'COPY'
+*.mpg   -kb -m 'COPY'
+*.pdf   -kb -m 'COPY'
+*.png   -kb -m 'COPY'
+*.ppt   -kb -m 'COPY'
+*.rpm   -kb -m 'COPY'
+*.sit   -kb -m 'COPY'
+*.srpm  -kb -m 'COPY'
+*.swf   -kb -m 'COPY'
+*.tar   -kb -m 'COPY'
+*.tbz   -kb -m 'COPY'
+*.tgz   -kb -m 'COPY'
+*.tif   -kb -m 'COPY'
+*.tiff  -kb -m 'COPY'
+*.war   -kb -m 'COPY'
+*.xbm   -kb -m 'COPY'
+*.xls   -kb -m 'COPY'
+*.zip   -kb -m 'COPY'
+#

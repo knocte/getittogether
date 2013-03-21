@@ -1,0 +1,256 @@
+<project name="git" default="run"> 
+	<property name="obj-dir" location="obj" />
+	<property name="lib-dir" location="lib" />
+	<property name="src-dir" location="./" />
+	<property name="test-dir" location="test" />
+	<property name="junit-dir" location="test/jUnit" />
+	<property name="nowarn" value="off" />
+	<property name="debug" value="on" />
+	<property name="projectname" value="git"/>
+	
+	
+	<path id="classpath.base">
+	<pathelement path="${java.class.path}" />
+	<pathelement location="./" />
+		<pathelement location="${lib-dir}/jdom-xml.jar" />
+		<pathelement location="${lib-dir}/tritonus.jar"/>
+		<pathelement location="${lib-dir}/rendezvous.jar" />
+		<pathelement location="${lib-dir}/mp3spi1.9.1.jar" />
+		<pathelement location="${lib-dir}/kunststoff.jar" />
+		<pathelement location="${lib-dir}/id3libvdheide.jar" />
+		<pathelement location="${lib-dir}/skinlf.jar" />
+		<pathelement location="${lib-dir}/nextlf.jar"/>
+		<pathelement location="${lib-dir}/QTJava.jar"/>
+		<pathelement location="${obj-dir}/"/>
+	</path>
+
+		
+	<path id="classpath.test">
+		<pathelement location="${test-dir}" />
+		<pathelement location="${lib-dir}/junit.jar" />
+		<path refid="classpath.base" />
+	</path>	
+
+<target name="init" >
+	<mkdir dir="${obj-dir}" />
+	<tstamp/>
+</target>
+
+<target name="clean-init">
+	<delete dir="${obj-dir}" />
+	<delete file="${lib-dir}/${projectname}.jar"/>
+</target>
+
+
+
+
+<target name="compile" depends="init">
+	<javac  nowarn="${nowarn}" debug="${debug}"
+			srcdir="src"
+			destdir="./obj">
+			<classpath refid="classpath.base" />
+			</javac>
+</target>
+
+
+<target name="clean-compile">
+	<delete>
+		<fileset dir="${obj-dir}" includes="**/*.class" />
+	</delete>
+</target>
+
+<target name="jar" depends="compile">
+	<jar jarfile="${lib-dir}/${projectname}.jar">
+		<fileset dir="${obj-dir}">
+			<include name="**/*.class"/>
+			<include name="**/*.gif"/>
+		</fileset>
+		<fileset dir="src">
+			<include name="**/*.png"/>
+			<include name="**/*.jpg"/>
+			<include name="**/*.ser"/>
+			<include name="**/*.gif"/>
+		</fileset>
+		<manifest>
+			<attribute name="Built-By" value="Your name"/>
+		    <attribute name="Main-Class" value="org.git.client.swing.GetItTogether"/>
+	        <section name="YourMainClass">
+		        <attribute name="Sealed" value="false"/>
+	        </section>
+        </manifest>
+	</jar> 
+</target>
+
+<target name="libjar" depends="compile">
+	<jar jarfile="${projectname}.jar">
+		<fileset dir="${obj-dir}">
+			<include name="**/*.class"/>
+			<include name="**/*.gif"/>
+		</fileset>
+		<fileset dir="src">
+			<include name="**/*.ser"/>
+		</fileset>
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+		
+		<manifest>
+			<attribute name="Built-By" value="Your name"/>
+		    <attribute name="Main-Class" value="org.git.client.swing.GetItTogether"/>
+	        <section name="YourMainClass">
+		        <attribute name="Sealed" value="false"/>
+	        </section>
+        </manifest>
+	</jar> 
+</target>
+	
+	
+<target name="genjar" depends="compile">	
+	<taskdef resource="genjar.properties"/>
+	<genjar jarfile ="${lib-dir}/${projectname}_genjar.jar">
+	<class name="org/git/client/swing/GetItTogether"/>
+	<classfilter>
+		<include name="javax.jmdns." />
+	</classfilter>
+	<classpath refid="classpath.base"/>
+	</genjar>
+
+
+</target>
+	
+
+<!--<target name="alltests" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+
+		<test name="test.AllTests" todir="${test-dir}/results" outfile="${DSTAMP}-${TSTAMP}"/>
+	</junit>
+</target>-->
+
+<!--<env key="DISPLAY" value=":1.0"/>-->
+		
+<!--<target name="njr" depends="compiletests"> 
+	<java fork="yes" classname="test.InstrumentedClassTest">
+		<classpath refid="classpath.test" />
+	</java>
+</target>-->
+
+
+<!--<target name="ccttest" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+		<test name="test.CCTTest" todir="${test-dir}/results" outfile="SteveCCT.log"/>
+	</junit>
+</target>-->
+
+<!--<target name="sourcecodetest" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+		<test name="test.SourceCodeTest" todir="${test-dir}/results" outfile="SteveSourceCode.log"/>
+	</junit>
+</target>-->
+
+
+<!--<target name="woo1" depends="compiletests"> 
+	<java fork="yes" classname="test.SourceCodeTest">
+		<classpath refid="classpath.test" />
+	</java>
+</target>-->
+
+<!--<target name="woo" depends="compiletests"> 
+	<java fork="yes" classname="test.CCTTest">
+		<classpath refid="classpath.test" />
+	</java>
+</target>-->
+
+
+<!--<target name="jonccr" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+
+		<test name="test.CCRTest" todir="${test-dir}/results" outfile="jonsccr ${DSTAMP}-${TSTAMP}"/>
+	</junit>
+</target>-->
+
+		
+<!--<target name="jonreport" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+
+		<test name="test.ReportTest" todir="${test-dir}/results" outfile="jonsreport ${DSTAMP}-${TSTAMP}"/>
+	</junit>
+</target>
+
+<target name="jonxml" depends="compiletests" >
+	<junit fork="yes" printsummary="on" >
+		<classpath refid="classpath.test" />
+		<formatter type="plain"/>
+
+		<test name="test.XMLParserTest" todir="${test-dir}/results" outfile="jonsxml ${DSTAMP}-${TSTAMP}"/>
+	</junit>
+</target>
+<target name="JUNIT">
+	<available property="junit.present" classname="junit.framework.TestCase" />
+</target>
+
+<target name="compiletests" depends="jar">
+	<javac srcdir="${junit-dir}" destdir="${test-dir}">
+		<classpath refid="classpath.test" />
+	</javac>
+</target>
+-->
+
+
+	
+<target name="clean-jar">
+	<delete file="${lib-dir}/${projectname}.jar" />
+</target>
+	
+<target name="run" depends="jar">
+	<java classname="org.git.client.swing.GetItTogether" fork="true">
+			<classpath refid="classpath.base" />
+	</java>
+</target>
+
+<target name="serve" depends="jar">
+	<java classname="itunes.server.Server" fork="true">
+			<classpath refid="classpath.base" />
+			<arg line=" -n woo /Users/wooo/1.mp3" />
+	</java>
+</target>
+
+<!--classpath="${lib-dir}/${projectname}.jar:${lib-dir}/whiteboxparser.jar"
+<arg line=" -d test/ -o test/outdir/ -s ./test.xml"/>-->
+
+<target name="all" depends="run"/>
+<target name="clean" depends="clean-init"/>
+
+<target depends ="init" description="Generates Javadoc" name ="javadoc">
+<mkdir dir = "docs/CCT"/>
+<javadoc destdir = "docs/CCT" 
+packagenames = "CCR,CCT,test" 
+       author = "true" 
+       version = "true" 
+       use = "true" 
+       splitindex = "true" 
+       noindex = "false" 
+       windowtitle = "${app.name} API, ${app.version}" 
+       doctitle = "${app.name} ${app.version}" 
+       bottom = "Copyright (c) 2004 All Rights Reserved.">
+     <sourcepath>
+       <pathelement path = "${src-dir}"/>
+			 <pathelement path = "${junit-dir}"/>
+     </sourcepath>
+     
+   </javadoc>
+   </target>
+
+
+
+
+	</project>
